@@ -5,28 +5,15 @@
       New to Vuestic?
       <RouterLink :to="{ name: 'signup' }" class="font-semibold text-primary">Sign up</RouterLink>
     </p>
-    <VaInput
-      v-model="formData.email"
-      :rules="[validators.required, validators.email]"
-      class="mb-4"
-      label="Email"
-      type="email"
-    />
+    <VaInput v-model="formData.email" :rules="[validators.required, validators.email]" class="mb-4" label="Email"
+      type="email" />
     <VaValue v-slot="isPasswordVisible" :default-value="false">
-      <VaInput
-        v-model="formData.password"
-        :rules="[validators.required]"
-        :type="isPasswordVisible.value ? 'text' : 'password'"
-        class="mb-4"
-        label="Password"
-        @clickAppendInner.stop="isPasswordVisible.value = !isPasswordVisible.value"
-      >
+      <VaInput v-model="formData.password" :rules="[validators.required]"
+        :type="isPasswordVisible.value ? 'text' : 'password'" class="mb-4" label="Password"
+        @clickAppendInner.stop="isPasswordVisible.value = !isPasswordVisible.value">
         <template #appendInner>
-          <VaIcon
-            :name="isPasswordVisible.value ? 'mso-visibility_off' : 'mso-visibility'"
-            class="cursor-pointer"
-            color="secondary"
-          />
+          <VaIcon :name="isPasswordVisible.value ? 'mso-visibility_off' : 'mso-visibility'" class="cursor-pointer"
+            color="secondary" />
         </template>
       </VaInput>
     </VaValue>
@@ -48,7 +35,7 @@
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { useForm, useToast } from 'vuestic-ui'
-import { validators } from '../../services/utils'
+import { validators, Axios } from '../../services/utils'
 
 const { validate } = useForm('form')
 const { push } = useRouter()
@@ -63,7 +50,11 @@ const formData = reactive({
 const submit = () => {
   if (validate()) {
     init({ message: "You've successfully logged in", color: 'success' })
-    push({ name: 'dashboard' })
+    console.log(formData.email)
+    Axios.post('login', {
+      username: formData.email,
+      userpass: formData.password
+    })
   }
 }
 </script>
