@@ -15,7 +15,7 @@ export const validators = {
 
 /** Axios init */
 export const Axios = axios.create({
-  baseURL: 'http://192.168.0.1/api/',
+  baseURL: 'http://192.168.0.100:1337/api/',
   timeout: 5000,
   headers: {
     'Content-Type': 'application/json',
