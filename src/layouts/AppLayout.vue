@@ -21,7 +21,11 @@
       <AppLayoutNavigation v-if="!isMobile" class="p-4" />
       <main class="p-4 pt-0">
         <article>
-          <RouterView />
+          <RouterView v-slot="{ Component }">
+            <Transition name="fade">
+              <component :is="Component" />
+            </Transition>
+          </RouterView>
         </article>
       </main>
     </template>
@@ -82,7 +86,7 @@ const onCloseSidebarButtonClick = () => {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 // Prevent icon jump on animation
 .va-sidebar {
   width: unset !important;

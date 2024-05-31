@@ -26,7 +26,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { downloadAsCSV } from '../../../../services/toCSV'
+import { downloadAsCSV } from '../../../../config/toCSV'
 
 const selectedPeriod = ref('Today')
 const periods = ['Today', 'Week', 'Month'].map((period) => ({ label: period, value: period }))

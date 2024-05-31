@@ -4,7 +4,7 @@ import { useForm } from 'vuestic-ui'
 import { User, UserRole } from '../types'
 import UserAvatar from './UserAvatar.vue'
 import { useProjects } from '../../projects/composables/useProjects'
-import { validators } from '../../../services/utils'
+import { validators } from '../../../config/utils'
 
 const props = defineProps({
   user: {

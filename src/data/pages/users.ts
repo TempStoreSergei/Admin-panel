@@ -1,4 +1,4 @@
-import { sleep } from '../../services/utils'
+import { sleep } from '../../config/utils'
 import { User } from './../../pages/users/types'
 import usersDb from './users-db.json'
 import projectsDb from './projects-db.json'

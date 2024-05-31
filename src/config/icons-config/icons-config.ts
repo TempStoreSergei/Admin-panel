@@ -1,7 +1,7 @@
 import { createIconsConfig } from 'vuestic-ui'
 import aliases from './aliases'
 
-export default createIconsConfig({
+export const icons = createIconsConfig({
   aliases,
   fonts: [
     {

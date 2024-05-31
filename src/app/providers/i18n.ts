@@ -1,6 +1,6 @@
 import { createI18n } from 'vue-i18n'
 
-const fileNameToLocaleModuleDict = import.meta.glob<{ default: Record<string, string> }>('./locales/*.json', {
+const fileNameToLocaleModuleDict = import.meta.glob<{ default: Record<string, string> }>('../../locales/*.json', {
   eager: true,
 })
 
@@ -17,7 +17,7 @@ Object.entries(fileNameToLocaleModuleDict)
     messages[localeNameLocaleMessagesTuple[0]] = localeNameLocaleMessagesTuple[1]
   })
 
-export default createI18n({
+export const i18n = createI18n({
   legacy: false,
   locale: 'ru',
   fallbackLocale: 'ru',

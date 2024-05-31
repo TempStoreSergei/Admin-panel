@@ -1,10 +1,9 @@
-import iconsConfig from './icons-config/icons-config'
-import colors from './themes'
-import { defineVuesticConfig } from 'vuestic-ui'
+import { colors, icons } from '../../config';
+import { defineVuesticConfig } from 'vuestic-ui';
 
-export default defineVuesticConfig({
+export const config = defineVuesticConfig({
   colors,
-  icons: iconsConfig,
+  icons,
   breakpoint: {
     enabled: true,
     bodyClass: true,
@@ -52,4 +51,4 @@ export default defineVuesticConfig({
       },
     },
   },
-})
+});

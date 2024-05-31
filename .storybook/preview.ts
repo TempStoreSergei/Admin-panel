@@ -1,6 +1,6 @@
 import { type Preview, setup } from '@storybook/vue3'
 import { createVuestic } from 'vuestic-ui'
-import vuesticGlobalConfig from '../src/services/vuestic-ui/global-config'
+import vuesticGlobalConfig from '../src/config/vuestic-ui/global-config'
 import './storybook-main.scss'
 import '../src/scss/main.scss'
 

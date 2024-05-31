@@ -35,7 +35,7 @@
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { useForm, useToast } from 'vuestic-ui'
-import { validators, Axios } from '../../services/utils'
+import { validators, Axios } from '../../config/utils'
 
 const { validate } = useForm('form')
 const { push } = useRouter()

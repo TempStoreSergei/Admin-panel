@@ -1,4 +1,4 @@
-export default {
+export const colors = {
   presets: {
     light: {
       backgroundPrimary: '#F4F6F8',
