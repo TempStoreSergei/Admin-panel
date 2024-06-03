@@ -7,6 +7,11 @@ import RouteViewComponent from '../layouts/RouterBypass.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
+    name: 'test',
+    path: '/test',
+    component: () => import('../pages/content/Test.vue'),
+  },
+  {
     path: '/:pathMatch(.*)*',
     redirect: { name: 'admin/login' },
   },

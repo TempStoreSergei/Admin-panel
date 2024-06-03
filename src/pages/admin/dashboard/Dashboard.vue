@@ -6,9 +6,22 @@ import YearlyBreakup from './cards/YearlyBreakup.vue'
 import MonthlyEarnings from './cards/MonthlyEarnings.vue'
 import RegionRevenue from './cards/RegionRevenue.vue'
 import Timeline from './cards/Timeline.vue'
+
+import { Axios } from '../../../config/utils'
+
+const submit = () => {
+  Axios.get('get_settings')
+    .then((response) => {
+      console.log()
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+}
 </script>
 
 <template>
+  <button @click="submit">Click</button>
   <h1 class="page-title font-bold">Dashboard</h1>
   <section class="flex flex-col gap-4">
     <div class="flex flex-col sm:flex-row gap-4">

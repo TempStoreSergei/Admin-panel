@@ -8,44 +8,86 @@
     close-button
     @update:modelValue="emits('cancel')"
   >
-    <h1 class="va-h5 mb-4">Reset password</h1>
+    <h1 class="va-h5 mb-4">Edit name</h1>
     <VaForm ref="form" @submit.prevent="submit">
-      <VaInput v-model="Name" class="mb-4" label="Name" placeholder="Name" />
+      <VaInput v-model="name" class="mb-4" label="Name" placeholder="Name" :rules="nameRules" @input="handleInput" />
+      <VaInput
+        v-model="password"
+        class="mb-4"
+        label="Password"
+        placeholder="Password"
+        type="password"
+        :rules="passwordRules"
+        @input="handleInput"
+      />
       <div class="flex flex-col-reverse md:flex-row md:items-center md:justify-end md:space-x-4">
         <VaButton :style="buttonStyles" preset="secondary" color="secondary" @click="emits('cancel')"> Cancel</VaButton>
-        <VaButton :style="buttonStyles" class="mb-4 md:mb-0" type="submit" @click="submit"> Save</VaButton>
+        <VaButton :style="buttonStyles" class="mb-4 md:mb-0" type="submit" :disabled="!isFormValid" @click="submit"> Save</VaButton>
       </div>
     </VaForm>
   </VaModal>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue'
-import { useUserStore } from '../../../stores/user-store'
 
+<script lang="ts" setup>
+import { ref, computed } from 'vue'
+import { useUserStore } from '../../../stores/user-store'
+import { useToast, useForm } from 'vuestic-ui'
 import { buttonStyles } from '../styles'
-import { useToast } from 'vuestic-ui/web-components'
+import { Axios } from '../../../config/utils'
 
 const store = useUserStore()
-
 const { init } = useToast()
+const { validate } = useForm('form')
 
 const emits = defineEmits(['cancel'])
 
-const Name = ref<string>(store.userName)
+const name = ref<string>(store.userName)
+const password = ref<string>('')
 
-const submit = () => {
-  if (!Name.value || Name.value === store.userName) {
-    return emits('cancel')
+const nameRules = [(v: string) => !!v || 'Name field is required']
+const passwordRules = [(v: string) => !!v || 'Password field is required']
+
+const isFormValid = computed(() => {
+  return name.value && password.value && validate()
+})
+
+const handleInput = async () => {
+  await validate()
+}
+
+const submit = async () => {
+  const isValid = await validate()
+  if (isValid) {
+    try {
+      await changeUserName()
+      store.changeUserName(name.value)
+      init({ message: "You've successfully changed your name", color: 'success' })
+      emits('cancel')
+    } catch (error) {
+      handleErrors(error)
+    }
   }
+}
 
-  store.changeUserName(Name.value)
-  init({ message: "You've successfully changed your name", color: 'success' })
-  emits('cancel')
+const changeUserName = async () => {
+  await Axios.post('change_user_name', { username: name.value, userpass: password.value }).then((response) => {
+    if (response.data.success !== 'yes') {
+      throw new Error('Failed to update name')
+    }
+  })
+}
+
+const handleErrors = (error: Error) => {
+  console.log('error', error)
+  let message = 'An error occurred'
+  if (error.message === 'Failed to update name') {
+    message = 'Failed to update name'
+  }
+  init({ message, color: 'danger' })
 }
 </script>
 
 <style lang="scss">
-// TODO temporary before https://github.com/epicmaxco/vuestic-ui/issues/4020 fix
 .va-modal__inner {
   min-width: 326px;
 }
