@@ -5,8 +5,7 @@
       New to Vuestic?
       <RouterLink :to="{ name: 'signup' }" class="font-semibold text-primary">Sign up</RouterLink>
     </p>
-    <VaInput v-model="formData.email" :rules="[validators.required, validators.email]" class="mb-4" label="Email"
-      type="email" />
+    <VaInput v-model="formData.email" :rules="[validators.required]" class="mb-4" label="Email" type="email" />
     <VaValue v-slot="isPasswordVisible" :default-value="false">
       <VaInput v-model="formData.password" :rules="[validators.required]"
         :type="isPasswordVisible.value ? 'text' : 'password'" class="mb-4" label="Password"
@@ -49,12 +48,25 @@ const formData = reactive({
 
 const submit = () => {
   if (validate()) {
-    init({ message: "You've successfully logged in", color: 'success' })
-    console.log(formData.email)
     Axios.post('login', {
       username: formData.email,
-      userpass: formData.password
+      userpass: formData.password,
     })
+      .then((response) => {
+        const data = response.data
+        if (data.cookie) {
+          const expiresInDays = 7
+          const cookie = `cookie=${data.cookie}; path=/; expires=${new Date(
+            Date.now() + expiresInDays * 24 * 60 * 60 * 1000,
+          ).toUTCString()}`
+          document.cookie = cookie
+          init({ message: "You've successfully logged in", color: 'success' })
+          push({ name: 'dashboard' })
+        }
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 }
 </script>

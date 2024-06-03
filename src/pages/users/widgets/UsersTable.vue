@@ -8,8 +8,8 @@ import { useVModel } from '@vueuse/core'
 import { Project } from '../../projects/types'
 
 const columns = defineVaDataTableColumns([
-  { label: 'Full Name', key: 'fullname', sortable: true },
-  { label: 'Email', key: 'email', sortable: true },
+  { label: 'Наименование товара', key: 'fullname', sortable: true },
+  { label: 'Поставщик', key: 'email', sortable: true },
   { label: 'Username', key: 'username', sortable: true },
   { label: 'Role', key: 'role', sortable: true },
   { label: 'Projects', key: 'projects', sortable: true },
