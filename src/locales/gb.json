@@ -36,6 +36,9 @@
     "simplified_chinese": "Simplified Chinese",
     "persian": "Persian"
   },
+  "breadcrumb": {
+    "home": "Home"
+  },
   "menu": {
     "auth": "Auth",
     "buttons": "Buttons",

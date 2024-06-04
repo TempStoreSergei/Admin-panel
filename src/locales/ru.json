@@ -171,6 +171,9 @@
   "search": {
     "placeholder": "Поиск..."
   },
+  "breadcrumb": {
+    "home": "Главная"
+  },
   "buttonSelect": {
     "dark": "Темный",
     "light": "Светлый"
