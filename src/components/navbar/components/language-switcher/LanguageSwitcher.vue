@@ -4,7 +4,7 @@
       <button class="border-0 bg-transparent cursor-pointer" @click="toggleTooltip">
         <img :src="currentFlag" alt="flag" class="w-8 h-8 rounded-full" />
       </button>
-      <div v-if="showTooltip" class="absolute mt-2 left-0 bg-white border border-gray-200 shadow-lg z-10 p-2">
+      <div v-if="showTooltip" class="absolute mt-2 left-0 bg-white border border-gray-200 shadow-lg z-10 p-2 w-max">
         <ul class="list-none m-0 p-0">
           <li
             v-for="(lang, code) in languages"

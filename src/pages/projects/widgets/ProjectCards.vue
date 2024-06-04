@@ -68,7 +68,7 @@ const avatarColor = (userName: string) => {
           <VaButton preset="secondary" icon="mso-delete" color="danger" @click="$emit('delete', project)" />
         </div>
       </VaCardContent>
-    </VaCard>
+    </VaCard>   
   </VaInnerLoading>
   <div v-else class="p-4 flex justify-center items-center text-[var(--va-secondary)]">No projects</div>
 </template>

@@ -15,14 +15,7 @@ export default {
       name: 'dashboard',
       displayName: 'menu.dashboard',
       meta: {
-        icon: 'vuestic-iconset-dashboard',
-      },
-    },
-    {
-      name: 'users',
-      displayName: 'menu.users',
-      meta: {
-        icon: 'group',
+        icon: 'dashboard',
       },
     },
     {
@@ -54,39 +47,10 @@ export default {
       ],
     },
     {
-      name: 'auth',
-      displayName: 'menu.auth',
-      meta: {
-        icon: 'login',
-      },
-      children: [
-        {
-          name: 'login',
-          displayName: 'menu.login',
-        },
-        {
-          name: 'signup',
-          displayName: 'menu.signup',
-        },
-        {
-          name: 'recover-password',
-          displayName: 'menu.recover-password',
-        },
-      ],
-    },
-
-    {
       name: 'faq',
       displayName: 'menu.faq',
       meta: {
         icon: 'quiz',
-      },
-    },
-    {
-      name: '404',
-      displayName: 'menu.404',
-      meta: {
-        icon: 'vuestic-iconset-files',
       },
     },
     {
